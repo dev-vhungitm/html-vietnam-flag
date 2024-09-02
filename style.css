@@ -1,0 +1,86 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	min-height: 100vh;
+	margin: 0;
+	padding: 40px;
+}
+
+/* Container */
+.flag-container {
+	/* Flag variables */
+	--flag-color: #da251d;
+	--flag-width: 500px;
+	--flag-animation-duration: 10s;
+
+	/* Star variables */
+	--star-color: #ffd700;
+	--star-width: calc(2 / 5 * 100%);
+	--star-animation-duration: 10s;
+	--star-animation-delay: calc(var(--flag-animation-duration) + 1s);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Flag */
+.flag-container .flag {
+	width: var(--flag-width);
+	aspect-ratio: 3 / 2;
+}
+
+.flag-container .flag polygon {
+	fill: transparent;
+	stroke: var(--flag-color);
+	stroke-dasharray: 1800;
+	stroke-dashoffset: 1800;
+	animation: flag-anim var(--flag-animation-duration) linear forwards;
+}
+
+/* Star */
+.flag-container .star {
+	position: absolute;
+	width: var(--star-width);
+	aspect-ratio: 1 / 1;
+}
+
+.flag-container .star polygon {
+	fill: transparent;
+	stroke: var(--star-color);
+	stroke-dasharray: 1900;
+	stroke-dashoffset: 1900;
+	animation: star-anim var(--star-animation-duration) linear forwards;
+	animation-delay: var(--star-animation-delay);
+}
+
+/* Animation */
+@keyframes flag-anim {
+	95% {
+		stroke-dashoffset: 0;
+		fill: transparent;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+		fill: var(--flag-color);
+	}
+}
+
+@keyframes star-anim {
+	95% {
+		stroke-dashoffset: 0;
+		fill: transparent;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+		fill: var(--star-color);
+	}
+}
